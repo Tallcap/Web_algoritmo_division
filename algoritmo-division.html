@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Teorema del algoritmo de la división — Demostraciones</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #8b3a3a;
+    --line: #ddd8d0;
+    --panel: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1 {
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-top: 56px;
+    padding-top: 8px;
+    scroll-margin-top: 20px;
+  }
+  .statement {
+    background: var(--panel);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    margin: 20px 0 32px;
+    font-size: 1.02rem;
+  }
+  table.steps {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.98rem;
+  }
+  table.steps td {
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  td.num {
+    width: 28px;
+    color: var(--muted);
+    font-family: Georgia, serif;
+  }
+  td.reason {
+    width: 260px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    text-align: right;
+  }
+  .qed {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+  a { color: var(--accent); }
+  hr.sep {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 56px 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Teorema del algoritmo de la división</h1>
+  <div class="subtitle">Demostraciones completas — existencia y unicidad</div>
+
+  <div class="statement">
+    Sean $a \in \mathbb{Z}$ y $b \in \mathbb{Z}^+$. Entonces existen $q, r \in \mathbb{Z}$ tales que:
+    $$a = bq + r, \quad 0 \le r < b.$$
+  </div>
+
+  <h2 id="existencia">Demostración de la existencia</h2>
+
+  <table class="steps">
+    <tr><td class="num">1)</td><td>$a \in \mathbb{Z} \land b \in \mathbb{Z}^+$</td><td class="reason">(Hipótesis)</td></tr>
+    <tr><td class="num">2)</td><td>$S = \{y \in \mathbb{Z} \mid y = a - bx,\ \text{para algún } x \in \mathbb{Z}, y \ge 0\}$</td><td class="reason">(Definición de $S$)</td></tr>
+    <tr><td class="num">3)</td><td>Existe $m \in \mathbb{Z}$ tal que $mb \le a$</td><td class="reason">(Lema 3.56 en 1)</td></tr>
+    <tr><td class="num">4)</td><td>$a - mb \ge 0$</td><td class="reason">(Definición de orden en 3)</td></tr>
+    <tr><td class="num">5)</td><td>$a - mb \in S$</td><td class="reason">(Definición de $S$ en 2 y 4)</td></tr>
+    <tr><td class="num">6)</td><td>$S \ne \varnothing$</td><td class="reason">(Por 5)</td></tr>
+    <tr><td class="num">7)</td><td>$S \subseteq \mathbb{Z}_0^+$</td><td class="reason">(Definición de $S$ en 2)</td></tr>
+    <tr><td class="num">8)</td><td>Existe $r \in S$ tal que $r = \min S$</td><td class="reason">(Principio del Buen Orden en 6 y 7)</td></tr>
+    <tr><td class="num">9)</td><td>$r = a - bq$, para algún $q \in \mathbb{Z}$</td><td class="reason">(Definición de $S$ en 8)</td></tr>
+    <tr><td class="num">10)</td><td>$a = bq + r$</td><td class="reason">(Despeje en 9)</td></tr>
+    <tr><td class="num">11)</td><td>$r \ge 0$</td><td class="reason">(Definición de $S$ en 8)</td></tr>
+    <tr><td class="num">12)</td><td>Supongamos que $r \ge b$</td><td class="reason">(Por método del absurdo)</td></tr>
+    <tr><td class="num">13)</td><td>$r - b \ge 0$</td><td class="reason">(Definición de orden en 12)</td></tr>
+    <tr><td class="num">14)</td><td>$r - b = (a - bq) - b$</td><td class="reason">(Sustitución en 9)</td></tr>
+    <tr><td class="num">15)</td><td>$r - b = a - b(q+1)$</td><td class="reason">(Propiedad distributiva en 14)</td></tr>
+    <tr><td class="num">16)</td><td>$q + 1 \in \mathbb{Z}$</td><td class="reason">(Clausura de $\mathbb{Z}$)</td></tr>
+    <tr><td class="num">17)</td><td>$r - b \in S$</td><td class="reason">(Definición de $S$ en 13, 15 y 16)</td></tr>
+    <tr><td class="num">18)</td><td>$r - b < r$</td><td class="reason">(Porque $b > 0$)</td></tr>
+    <tr><td class="num">19)</td><td>$r - b \in S \land r - b < r$</td><td class="reason">(Conjunción de 17 y 18)</td></tr>
+    <tr><td class="num">20)</td><td>Esto contradice que $r = \min S$</td><td class="reason">(Definición de elemento mínimo en 8 y 19)</td></tr>
+    <tr><td class="num">21)</td><td>$r < b$</td><td class="reason">(Contradicción en 12-20)</td></tr>
+    <tr><td class="num">22)</td><td>$0 \le r < b$</td><td class="reason">(Conjunción de 11 y 21)</td></tr>
+    <tr><td class="num">23)</td><td>Existen $q, r \in \mathbb{Z}$ tales que $a = bq + r \land 0 \le r < b$</td><td class="reason">(Conclusión en 10 y 22)</td></tr>
+  </table>
+  <div class="qed">∎</div>
+
+  <hr class="sep">
+
+  <h2 id="unicidad">Demostración de la unicidad</h2>
+
+  <p>Para ello, se supone que un mismo número entero $a$ admite dos expresiones de división con el mismo divisor $b$.</p>
+
+  <table class="steps">
+    <tr><td class="num">1)</td><td>$a = bq + r,\ \text{con } 0 \le r < b$</td><td class="reason">(Primera división)</td></tr>
+    <tr><td class="num">2)</td><td>$a = bq' + r',\ \text{con } 0 \le r' < b$</td><td class="reason">(Segunda división)</td></tr>
+    <tr><td class="num">3)</td><td>$bq + r = bq' + r'$</td><td class="reason">(P.S de 1 en 2)</td></tr>
+    <tr><td class="num">4)</td><td>$b(q - q') = r' - r$</td><td class="reason">(Operamos en 3)</td></tr>
+    <tr><td class="num">5)</td><td>$b \mid (r' - r)$</td><td class="reason">(Definición de divisibilidad en 4)</td></tr>
+    <tr><td class="num">6)</td><td>$-(b-1) \le r' - r \le b - 1$</td><td class="reason">(Por $0 \le r, r' < b$)</td></tr>
+    <tr><td class="num">7)</td><td>$|r' - r| < b$</td><td class="reason">(Definición de valor absoluto en 6)</td></tr>
+    <tr><td class="num">8)</td><td>$r' - r = 0$</td><td class="reason">(El único múltiplo de $b$ con valor absoluto menor que $b$ es 0, en 5 y 7)</td></tr>
+    <tr><td class="num">9)</td><td>$r' = r$</td><td class="reason">(Resta en Enteros en 8)</td></tr>
+    <tr><td class="num">10)</td><td>$b(q - q') = 0$</td><td class="reason">(Sustitución de 8 en 4)</td></tr>
+    <tr><td class="num">11)</td><td>$q - q' = 0$</td><td class="reason">(Como $b > 0$)</td></tr>
+    <tr><td class="num">12)</td><td>$q = q'$</td><td class="reason">(Resta en Enteros en 11)</td></tr>
+    <tr><td class="num">13)</td><td>El cociente $q$ y el residuo $r$ son únicos.</td><td class="reason">(Conclusión en 9 y 12)</td></tr>
+  </table>
+  <div class="qed">∎</div>
+
+  <p style="margin-top:32px; color: var(--muted); font-size:0.95rem;">
+    El teorema recientemente demostrado garantiza que la operación "dividir con residuo" está perfectamente bien definida
+    para cualquier par de enteros $a$ y $b > 0$.
+  </p>
+
+  <a class="back-link" href="#existencia">↑ Volver a la existencia</a>
+
+</div>
+</body>
+</html>
